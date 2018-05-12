@@ -7,20 +7,20 @@ static void delay (unsigned int time) {
 }
 
 int main (void) {
-    // Turn on the GPIOA peripheral
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    // Turn on the GPIOC peripheral
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    // Put pin in general purpose output mode (B01)
-    GPIOA->MODER |= GPIO_MODER_MODER4_0;
+    // Put pin 13 in general purpose output mode
+    GPIOC->MODER |= GPIO_MODER_MODER13_0;
 
     while (1) {
-        // Reset the bit for port A4
-        GPIOA->BSRR = GPIO_BSRR_BR_4;
+        // Reset the state of pin 13 to output low
+        GPIOC->BSRR = GPIO_BSRR_BR_13;
 
         delay(500);
 
-        // Set the bit for port A4
-        GPIOA->BSRR = GPIO_BSRR_BS_4;
+        // Set the state of pin 13 to output high
+        GPIOC->BSRR = GPIO_BSRR_BS_13;
 
         delay(500);
     }
